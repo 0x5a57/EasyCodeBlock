@@ -1,0 +1,37 @@
+name: Release Obsidian Plugin
+
+on:
+  push:
+    # 只有当你推送 tag (比如 1.0.0, 1.0.1) 的时候才会触发
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 拉取代码
+      - uses: actions/checkout@v3
+
+      # 2. 安装 Node.js 环境
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '24' # 或者你本地使用的版本
+
+      # 3. 安装依赖
+      - run: npm install
+
+      # 4. 构建代码 (生成 main.js)
+      - run: npm run build
+
+      # 5. 创建 GitHub Release 并上传文件
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          # 需要上传到 Release 的文件
+          files: |
+            main.js
+            manifest.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
