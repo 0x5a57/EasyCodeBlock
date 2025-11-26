@@ -1,0 +1,10 @@
+{
+	"id": "easy-code-block",
+	"name": "Easy Code Block",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Easily wrap or insert code blocks via ribbon icon.",
+	"author": "User",
+	"authorUrl": "",
+	"isDesktopOnly": false
+}
